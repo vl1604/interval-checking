@@ -68,7 +68,7 @@ public class IntervalList
 		list = new ArrayList<Interval>();
 		updateCaption();
 
-		for (int i=0; i < size; i++)
+		for (int i = 0; i < size; i++)
 		{
 			r1 = origin + (bound - origin) * r.nextDouble();
 			r2 = origin + (bound - origin) * r.nextDouble();
@@ -90,7 +90,7 @@ public class IntervalList
 	{
 		System.out.println("Printing " + caption);
 		Stopwatch stopWatch = new Stopwatch();
-		for (int i=0; i < list.size(); i++)
+		for (int i = 0; i < list.size(); i++)
 		{
 			stopWatch.resetWatch();
 			System.out.printf("%d:  (%f, %f) - %fus\n", i, 
@@ -103,20 +103,18 @@ public class IntervalList
 		return this;
 	}
 
-	public int checkN2()
+	public IntervalList checkN2()
 	{
+		Stopwatch stopWatchTotal = new Stopwatch();
 		int size = list.size();
 		int fitCount = 0;
 		boolean isFit;
 
-		System.out.println("Checking " + caption);
-
-		Stopwatch stopWatchTotal = new Stopwatch();
-		Stopwatch stopWatch = new Stopwatch();
+		//Stopwatch stopWatch = new Stopwatch();
 		for (int j = 0; j < size; j++)
 			for (int i = 0; i < size; i++)
 			{
-				stopWatch.resetWatch();
+				//stopWatch.resetWatch();
 				if (i != j)
 				{
 					isFit = list.get(j).contains(
@@ -125,19 +123,84 @@ public class IntervalList
 					if (isFit)
 					{
 						fitCount++;
-						System.out.printf(
-							"%d contains %d - %s (%fus)\n",
-							j, i, isFit ?"true": "false",
-							stopWatch.getElapsedTime());
+//						System.out.printf(
+//							"%d contains %d - %s (%fus)\n",
+//							j, i, isFit ?"true": "false",
+//							stopWatch.getElapsedTime());
 					}
 				}
 			}
 
-		System.out.printf("Total time: %f%s\n", 
+		System.out.printf("Total checking time: %f%s\n", 
 						  stopWatchTotal.getElapsedTime(),
 						  stopWatchTotal.getUnits());
-		System.out.printf("Fits count: %d\n", fitCount);
-		return fitCount;
+		System.out.printf("Fits count: %d\n\n", fitCount);
+
+		return this;
+	}
+
+	public IntervalList sortCheck2()
+	{
+		Stopwatch stopWatch = new Stopwatch();
+		int count = 0;
+		int size = list.size();
+
+		// Linked list sorting
+		for (int j = 0; j < size; j++)
+			for (int i = j + 1; i < size; i++)
+				if (list.get(j).getB() > list.get(i).getB()
+					&&
+					list.get(i).getA() < list.get(j).getB())
+				{
+					//list.add(j, list.remove(i));
+//					System.out.printf("#%d (%d contains %d)\n", 
+//									  j * list.size() + i, 
+//									  j, i);
+					//printL(list);
+					count++;
+				}
+		System.out.printf("Total checking 2 time: %f%s\n",
+						  stopWatch.getElapsedTime(),
+						  stopWatch.getUnits());
+		System.out.printf("Fits c2 count: %d\n\n", count);
+		return this;
+	}
+
+	public IntervalList sort2()
+	{
+		Stopwatch stopWatch = new Stopwatch();
+		List<Interval> ll = new ArrayList<Interval>(list);
+		int size = ll.size();
+
+		for (int j = 0; j < size; j++)
+			for (int i = j + 1; i < size; i++)
+				if (ll.get(i).getA() < ll.get(j).getA())
+				{
+					ll.add(j, ll.remove(i));
+					//System.out.printf("#%d (%d,%d)\n", j*ll.size()+i, j, i);
+					//printL(ll);
+				}
+
+		this.list = ll;
+		System.out.printf("Total sorting time: %f%s\n",
+						  stopWatch.getElapsedTime(),
+						  stopWatch.getUnits());
+		return this;
+	}
+
+	private void printL(List<Interval> ll)
+	{
+		System.out.println("Printing ll of " + caption);
+		Stopwatch stopWatch = new Stopwatch();
+		for (int i=0; i < ll.size(); i++)
+		{
+			stopWatch.resetWatch();
+			System.out.printf("%d:  (%f, %f) - %fus\n", i, 
+							  ll.get(i).getA(), 
+							  ll.get(i).getB(),
+							  stopWatch.getElapsedTime());
+		}
+		System.out.println();
 	}
 
 }
