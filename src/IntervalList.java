@@ -79,7 +79,7 @@ public class IntervalList
 				r1 = r2;
 				r2 = tmp;
 			}
-
+			
 			list.add(new Interval(r1, r2));
 		}
 
@@ -126,7 +126,7 @@ public class IntervalList
 //						System.out.printf(
 //							"%d contains %d - %s (%fus)\n",
 //							j, i, isFit ?"true": "false",
-//							stopWatch.getElapsedTime());
+//							stopWatch.getElapsedTime()); 
 					}
 				}
 			}
@@ -187,7 +187,7 @@ public class IntervalList
 						  stopWatch.getUnits());
 		return this;
 	}
-
+	
 	private void printL(List<Interval> ll)
 	{
 		System.out.println("Printing ll of " + caption);

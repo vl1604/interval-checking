@@ -7,7 +7,10 @@ public class Main
 			.setOrigin(0).setBound(100)
 			.build()//.print()
 			.checkN2()
-			.sort2()//.print();
-			.sortCheck2();
+			.sort2().sortCheck2();
+			
+		CollectionTesting test = new CollectionTesting();
+		test.testArrayList(Integer.MAX_VALUE/50,
+						Integer.MAX_VALUE/1000);
 	}
 }
