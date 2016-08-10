@@ -2,7 +2,7 @@ import java.util.*;
 
 public class IntervalList
 {
-	private List<Interval> list;
+	private ArrayList<Interval> list;
 	private int size, origin, bound;
 	private String caption;
 
@@ -79,7 +79,7 @@ public class IntervalList
 				r1 = r2;
 				r2 = tmp;
 			}
-			
+
 			list.add(new Interval(r1, r2));
 		}
 
@@ -169,7 +169,7 @@ public class IntervalList
 	public IntervalList sort2()
 	{
 		Stopwatch stopWatch = new Stopwatch();
-		List<Interval> ll = new ArrayList<Interval>(list);
+		ArrayList<Interval> ll = new ArrayList<Interval>(list);
 		int size = ll.size();
 
 		for (int j = 0; j < size; j++)
@@ -187,7 +187,23 @@ public class IntervalList
 						  stopWatch.getUnits());
 		return this;
 	}
-	
+
+	public IntervalList sort3()
+	{
+		printL(getSortedList(list));
+		return this;
+	}
+
+	private ArrayList<Interval> getSortedList(ArrayList<Interval> sortList)
+	{
+		Stopwatch stopWatch = new Stopwatch();
+		IntervalSorter intervalSorter = new IntervalSorter(sortList);
+		System.out.printf("Total sorting time: %f%s\n",
+						  stopWatch.getElapsedTime(),
+						  stopWatch.getUnits());
+		return intervalSorter.getSorted();
+	}
+
 	private void printL(List<Interval> ll)
 	{
 		System.out.println("Printing ll of " + caption);

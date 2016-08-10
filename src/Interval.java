@@ -1,5 +1,15 @@
-public class Interval
+public class Interval implements Comparable<Interval>
 {
+
+	@Override
+	public int compareTo(Interval interval)
+	{
+		return this.getA() < interval.getA() ?-1:
+			this.getA() > interval.getA() ?1:
+			this.getB() < interval.getB() ?-1:
+			this.getB() > interval.getB() ?1: 0;
+	}
+
 	private Double a, b;
 
 	Interval(Double a, Double b)

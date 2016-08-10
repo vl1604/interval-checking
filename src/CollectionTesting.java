@@ -33,15 +33,4 @@ public class CollectionTesting
 						  totalStopWatch.getUnits()
 						  );
 	}
-
-	//	public IntervalList sort3(){
-////		list.stream();
-////		List<String> items = {"1","2"};
-////		List<String> sorted = items.stream()
-////			.sorted().collect(Collectors.toList());
-////		
-//		return this;
-//	}
-
-
 }
