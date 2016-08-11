@@ -1,6 +1,18 @@
 public class Interval implements Comparable<Interval>
 {
+	private Double a, b;
+	private int containsCount;
 
+	public void setContainsCount(int containsCount)
+	{
+		this.containsCount = containsCount;
+	}
+
+	public int getContainsCount()
+	{
+		return containsCount;
+	}
+	
 	@Override
 	public int compareTo(Interval interval)
 	{
@@ -10,12 +22,11 @@ public class Interval implements Comparable<Interval>
 			this.getB() > interval.getB() ?1: 0;
 	}
 
-	private Double a, b;
-
 	Interval(Double a, Double b)
 	{
 		this.a = a;
 		this.b = b;
+		this.containsCount = 0;
 	}
 
 	public Double getA()

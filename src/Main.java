@@ -3,15 +3,16 @@ public class Main
 	public static void main(String[] args)
 	{
 		IntervalList list = new IntervalList();
-		list.setNum(10)
+		list.setNum(500)
 			.setOrigin(0).setBound(100)
 			.build()//.print()
 			.checkN2()
 			//.sort2().sortCheck2()
-			.print().sort3().sortCheck2();
+			//.print()
+			.sort3().sortCheck2();
 
-		CollectionTesting test = new CollectionTesting();
-		test.testArrayList(Integer.MAX_VALUE / 50,
-						   Integer.MAX_VALUE / 1000);
+//		CollectionTesting test = new CollectionTesting();
+//		test.testArrayList(Integer.MAX_VALUE / 50,
+//						   Integer.MAX_VALUE / 1000);
 	}
 }

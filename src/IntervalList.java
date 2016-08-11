@@ -107,14 +107,16 @@ public class IntervalList
 	{
 		Stopwatch stopWatchTotal = new Stopwatch();
 		int size = list.size();
-		int fitCount = 0;
+		int totalFitCount = 0, fitCount = 0;
 		boolean isFit;
 
-		//Stopwatch stopWatch = new Stopwatch();
+		Stopwatch stopWatch = new Stopwatch();
 		for (int j = 0; j < size; j++)
+		{
+			fitCount = 0;
+			stopWatch.resetWatch();
 			for (int i = 0; i < size; i++)
 			{
-				//stopWatch.resetWatch();
 				if (i != j)
 				{
 					isFit = list.get(j).contains(
@@ -122,6 +124,7 @@ public class IntervalList
 
 					if (isFit)
 					{
+						totalFitCount++;
 						fitCount++;
 //						System.out.printf(
 //							"%d contains %d - %s (%fus)\n",
@@ -129,12 +132,19 @@ public class IntervalList
 //							stopWatch.getElapsedTime()); 
 					}
 				}
+				list.get(j).setContainsCount(fitCount);
 			}
+			System.out.printf(
+				"%d contains %d intervals - %f%s\n",
+				j, fitCount,
+				stopWatch.getElapsedTime(),
+				stopWatch.getUnits());
+		}
 
 		System.out.printf("Total checking time: %f%s\n", 
 						  stopWatchTotal.getElapsedTime(),
 						  stopWatchTotal.getUnits());
-		System.out.printf("Fits count: %d\n\n", fitCount);
+		System.out.printf("Fits count: %d\n\n", totalFitCount);
 
 		return this;
 	}
